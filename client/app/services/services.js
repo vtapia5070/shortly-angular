@@ -8,12 +8,22 @@ angular.module('shortly.services', [])
     })
     .then(function (resp) {
       return resp.data;
+    }); 
+  };
+  var shortenLinks = function(link, $location){
+    return $http({
+      method: 'POST',
+      url: '/api/links', 
+      data: link
+    })
+    .then(function (resp) {
+      return resp.data.url;
     });
   };
   return {
-    links: links  
+    links: links, 
+    shortenLinks: shortenLinks 
   };
-
 })
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!
